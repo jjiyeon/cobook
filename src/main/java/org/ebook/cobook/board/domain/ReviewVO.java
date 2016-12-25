@@ -4,144 +4,120 @@ import java.util.Date;
 
 public class ReviewVO {
 
-	    private Integer reviewNo;
-	    private Integer ebookNo;
-	    private Integer memberNo;
+	    private Integer review_no;
+	    private Integer ebook_no;
+	    private Integer member_no;
 	    private String title;
 	    private String contents;
 	    private Integer hit;
 	    private Date regDate;
 	    private Float evaluate;
 
-	    public Integer getReviewNo() {
+	    public Integer getReview_no() {
+			return review_no;
+		}
 
-	        return reviewNo;
 
-	    }
 
+		public void setReview_no(Integer review_no) {
+			this.review_no = review_no;
+		}
 
 
-	    public void setReviewNo(Integer reviewNo) {
 
-	        this.reviewNo = reviewNo;
+		public Integer getEbook_no() {
+			return ebook_no;
+		}
 
-	    }
 
 
+		public void setEbook_no(Integer ebook_no) {
+			this.ebook_no = ebook_no;
+		}
 
-	    public Integer getEbookNo() {
 
-	        return ebookNo;
 
-	    }
+		public Integer getMember_no() {
+			return member_no;
+		}
 
 
 
-	    public void setEbookNo(Integer ebookNo) {
+		public void setMember_no(Integer member_no) {
+			this.member_no = member_no;
+		}
 
-	        this.ebookNo = ebookNo;
 
-	    }
 
+		public String getTitle() {
+			return title;
+		}
 
 
-	    public Integer getMemberNo() {
 
-	        return memberNo;
+		public void setTitle(String title) {
+			this.title = title;
+		}
 
-	    }
 
 
+		public String getContents() {
+			return contents;
+		}
 
-	    public void setMemberNo(Integer memberNo) {
 
-	        this.memberNo = memberNo;
 
-	    }
+		public void setContents(String contents) {
+			this.contents = contents;
+		}
 
 
 
-	    public String getTitle() {
+		public Integer getHit() {
+			return hit;
+		}
 
-	        return title;
 
-	    }
 
+		public void setHit(Integer hit) {
+			this.hit = hit;
+		}
 
 
-	    public void setTitle(String title) {
 
-	        this.title = title;
+		public Date getRegDate() {
+			return regDate;
+		}
 
-	    }
 
 
+		public void setRegDate(Date regDate) {
+			this.regDate = regDate;
+		}
 
-	    public String getContents() {
 
-	        return contents;
 
-	    }
+		public Float getEvaluate() {
+			return evaluate;
+		}
 
 
 
-	    public void setContents(String contents) {
+		public void setEvaluate(Float evaluate) {
+			this.evaluate = evaluate;
+		}
 
-	        this.contents = contents;
 
-	    }
 
-
-
-	    public Integer getHit() {
-
-	        return hit;
-
-	    }
-
-
-
-	    public void setHit(Integer hit) {
-
-	        this.hit = hit;
-
-	    }
-
-
-
-	    public Date getRegDate() {
-
-	        return regDate;
-
-	    }
-
-
-
-	    public void setRegDate(Date regDate) {
-
-	        this.regDate = regDate;
-
-	    }
-
-
-
-	    public Float getEvaluate() {
-
-	        return evaluate;
-
-	    }
-
-
-
-	    public void setEvaluate(Float evaluate) {
-
-	        this.evaluate = evaluate;
-
-	    }
+		@Override
+		public String toString() {
+			return "Bookreview [review_no=" + review_no + ", ebook_no=" + ebook_no + ", member_no=" + member_no
+					+ ", title=" + title + ", contents=" + contents + ", hit=" + hit + ", regDate=" + regDate
+					+ ", evaluate=" + evaluate + "]";
+		}
 
 
 
 	   
-
 	
 }

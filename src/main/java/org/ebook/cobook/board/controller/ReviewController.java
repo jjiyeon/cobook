@@ -30,6 +30,7 @@ public class ReviewController {
 	public String writePOST(Model model, ReviewVO vo)throws Exception{
 		
 		logger.info("리뷰 작성기능 실행");
+		logger.info(vo.toString());
 		reviewService.writeReview(vo);
 		return "/board/review/review_list";
 	}
