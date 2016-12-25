@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+import org.ebook.cobook.board.domain.Criteria;
 import org.ebook.cobook.board.domain.ReviewVO;
 import org.ebook.cobook.board.persistence.ReviewDAO;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,17 @@ public class ReviewServiceImpl implements ReviewService {
 		reviewDAO.create(vo);
 	}
 	
-	
+	@Override
+	public List<ReviewVO> getBookReviewList(Criteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return reviewDAO.bookReviewList(cri);
+	}
+
+	@Override
+	public int getBookReviewCount(Criteria cri) throws Exception {
+		// TODO Auto-generated method stub
+		return reviewDAO.getCount(cri);
+	}
+
 
 }

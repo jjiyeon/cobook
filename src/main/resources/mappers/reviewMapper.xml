@@ -6,13 +6,90 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="org.ebook.cobook.mapper.ReviewMapper">
 
 	<insert id="create">
-		insert into bookreview(review_no, member_no, title, contents, ebook_no,
+		insert into bookreview(review_no, member_no, title,
+		contents, ebook_no,
 		reg_date, evaluate)
 		values
-		(review_no_seq.nextval, #{member_no}, #{title},
-		 #{contents}, #{ebook_no}, sysdate, 3)
+		(review_no_seq.nextval,
+		#{member_no}, #{title},
+		#{contents}, #{ebook_no}, sysdate, 3)
 	</insert>
 
-	
+	<select id="bookReviewList" resultType="ReviewVO">
+	<![CDATA[	
+		select REVIEW_NO, EBOOK_NO, MEMBER_NO, TITLE, CONTENTS, HIT, REG_DATE,
+		EVALUATE, f.book_no
+		FROM 
+		(
+			SELECT ROWNUM AS rn,
+			REVIEW_NO, EBOOK_NO, MEMBER_NO, TITLE, CONTENTS, HIT, REG_DATE, EVALUATE
+			FROM BOOKREVIEW
+			WHERE review_no > 0
+	]]>
 
+		<include refid="search"></include>
+		ORDER BY review_no desc
+		) f.files
+	<![CDATA[
+	WHERE rn >= #{pageStart} AND rownum <= #{perPageNum}
+	and
+	ebook_no = f.book_no
+	]]>
+
+	</select>
+
+
+
+	<select id="boardReviewCount" resultType="int">
+	<![CDATA[  
+  select count(review_no) 
+  from bookreview
+  where review_no > 0 
+	]]>
+		<include refid="search"></include>
+
+	</select>
+
+	<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">
+				AND title like CONCAT('%', #{keyword}) || '%'
+			</if>
+			<if test="searchType == 'c'.toString()">
+				AND contents like CONCAT('%', #{keyword}) || '%'
+			</if>
+			<if test="searchType == 'w'.toString()">
+				AND member_no
+				IN(select member_no FROM member
+				WHERE
+				nickname like CONCAT('%', #{keyword}) || '%')
+			</if>
+			<if test="searchType == 'tc'.toString()">
+				and ( title like CONCAT('%', #{keyword}) || '%' OR
+				contents like
+				CONCAT('%', #{keyword}) || '%')
+			</if>
+			<if test="searchType == 'cw'.toString()">
+				and
+				( contents like CONCAT('%', #{keyword}) || '%'
+				OR
+				member_no IN(select member_no FROM member
+				WHERE nickname like
+				CONCAT('%', #{keyword}) || '%')
+				)
+			</if>
+			<if test="searchType == 'tcw'.toString()">
+				AND
+				( title like CONCAT('%', #{keyword}) || '%'
+				OR
+				contents
+				like CONCAT('%', #{keyword}) || '%'
+				OR
+				member_no IN(select member_no
+				FROM member
+				WHERE nickname like CONCAT('%', #{keyword}) || '%')
+				)
+			</if>
+		</if>
+	</sql>
 </mapper>
