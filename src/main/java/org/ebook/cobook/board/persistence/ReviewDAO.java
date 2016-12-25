@@ -7,5 +7,6 @@ public interface ReviewDAO {
 
 	public List<Map<String, Object>> getBorrowedBook(Integer member_no)throws Exception;
 	
+	public void create(ReviewVO vo)throws Exception;
 	
 }

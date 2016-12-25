@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
+import org.ebook.cobook.board.domain.ReviewVO;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -21,5 +22,13 @@ public class ReviewDAOImpl implements ReviewDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList(namespace+".bollowBookList", member_no);
 	}
+
+	@Override
+	public void create(ReviewVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.insert(namespace+".write", vo);
+	}
+
+	
 
 }
