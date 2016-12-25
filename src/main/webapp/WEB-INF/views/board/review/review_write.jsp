@@ -26,7 +26,7 @@
 	$(function() {
 
 		var member_no = 1;
-
+		callSummernote();
 		// 검색버튼을 눌럿을때 내가 빌렷던 책목록을 가져옴
 		$("#bollowSearch").on("click", function() {
 
@@ -46,10 +46,11 @@
 
 			var aTag = $(this);
 			var eno = aTag.attr("data-eno");
-			var src = aTag.attr("data-src");
 			$("#eno").val(eno);
+			$("#mno").val(member_no);
 			console.log("eno: " + eno);
-			console.log("src: " + src);
+			console.log("mno: " + member_no);	
+			$('#myModal').modal('hide');
 		});
 
 		$("#canceil").on("click", function() {
@@ -89,9 +90,10 @@
 </head>
 <body>
 
-	<form class="" action="index.html" method="post">
+	<form class="" action="/board/review/review_write" method="post">
 		<div>
 			<input type="hidden" id="eno" name="ebook_no" value="">
+			<input type="hidden" id="mno" name="member_no" value="">
 		</div>
 		<div>
 			<label for="">제목:</label> <input type="text" name="title" value="">

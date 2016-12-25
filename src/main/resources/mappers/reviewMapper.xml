@@ -6,11 +6,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="org.ebook.cobook.mapper.ReviewMapper">
 
 	<insert id="create">
-		insert into review(review_no, member_no, title, contents, ebook_no,
-		evaluate)
+		insert into bookreview(review_no, member_no, title, contents, ebook_no,
+		reg_date, evaluate)
 		values
 		(review_no_seq.nextval, #{member_no}, #{title},
-		 #{contents}, #{ebook_no}, #{evaluate});
+		 #{contents}, #{ebook_no}, sysdate, 3)
 	</insert>
 
 	
