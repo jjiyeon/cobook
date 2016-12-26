@@ -44,7 +44,25 @@ public class ReviewDAOImpl implements ReviewDAO {
 		return sqlSession.selectOne(reviewNamespace+".boardReviewCount", cri);
 	}
 
+	@Override
+	public Map<String, Object> readBookReview(Integer review_no) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(reviewNamespace+".readBookReview", review_no);
+	}
 
+	@Override
+	public void updateBookReview(Integer review_no) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.update(reviewNamespace+".updateBookReview", review_no);
+	}
+
+	@Override
+	public void deleteBookReview(Integer review_no) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.delete(reviewNamespace+".deleteBookReview", review_no);
+	}
+
+	
 	
 	
 }

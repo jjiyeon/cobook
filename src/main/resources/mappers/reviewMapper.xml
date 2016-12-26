@@ -50,6 +50,50 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	</select>
 
+	<select id="readBookReview" resultType="map">
+		SELECT br.title,
+		br.evaluate, br.contents, e.author,
+		e.publisher, f.fileurl, m.nickname
+		FROM bookreview br, ebook e, files f,
+		member m
+		WHERE br.ebook_no =
+		e.ebook_no
+		AND
+		br.ebook_no = f.book_no
+		AND
+		f.book_type LIKE 'ebook'
+		AND
+		br.member_no = m.member_no
+		AND
+		br.review_no = #{review_no};
+	</select>
+
+	<update id="updateBookReview">
+		update bookreview
+		set title = #{title}, contents = #{contents},
+		ebook_no = #{ebook_no}
+		where review_no = #{review_no};
+
+	</update>
+
+	<delete id="deleteBookReview">
+		delete from bookreview
+		where review_no = #{review_no};
+
+	</delete>
+
+
+
+
+
+
+
+
+
+
+
+
+
 	<sql id="search">
 		<if test="searchType != null">
 			<if test="searchType == 't'.toString()">
