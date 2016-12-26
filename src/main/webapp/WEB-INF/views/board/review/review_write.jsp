@@ -22,6 +22,10 @@
 <script src="/resources/editor/dist/summernote.js"></script>
 <script src="/resources/editor/dist/lang/summernote-ko-KR.js"></script>
 <script src="/resources/js/editorFunction.js"></script>
+<script type="text/javascript"
+	src="/resources/raty-master/lib/jquery.raty.js">
+	
+</script>
 <script type="text/javascript">
 	$(function() {
 
@@ -49,7 +53,7 @@
 			$("#eno").val(eno);
 			$("#mno").val(member_no);
 			console.log("eno: " + eno);
-			console.log("mno: " + member_no);	
+			console.log("mno: " + member_no);
 			$('#myModal').modal('hide');
 		});
 
@@ -57,7 +61,20 @@
 
 			history.back();
 		});
-
+	
+		// 별점 메서드
+		$('div#star').raty({
+			score : 3,
+			path : "/resources/raty-master/lib/images/",
+			width : 200,
+			click : function(score, evt) {
+				$("#starRating").val(score);
+				$("#displayStarRating").html(score);
+			},
+			half : true
+		});
+	
+	
 	});
 </script>
 <script>
@@ -92,16 +109,26 @@
 
 	<form class="" action="/board/review/review_write" method="post">
 		<div>
-			<input type="hidden" id="eno" name="ebook_no" value="">
-			<input type="hidden" id="mno" name="member_no" value="">
+			<input type="hidden" id="eno" name="ebook_no" value=""> <input
+				type="hidden" id="mno" name="member_no" value="">
 		</div>
 		<div>
 			<label for="">제목:</label> <input type="text" name="title" value="">
 		</div>
 		<button type="button" id="bollowSearch" class="btn btn-info btn-lg"
 			data-toggle="modal" data-target="#myModal">검색</button>
+		<div id="star"></div>
+		<!-- 별점  -->
+		<div style="padding-top: 10px;">
+			<label for="displayStarRating">Value : </label><span
+				id="displayStarRating" style="padding-left: 20px;">3</span>
+		</div>
 		<div>
-			<label for="">내용:</label>
+			<input type="hidden" id="starRating" name="evaluate" value="3" />
+		</div>
+		<!-- 별점 끝 -->
+		<div>
+			<label for="">내용</label>
 			<textarea name="contents" id="summernote" rows="8" cols="80"></textarea>
 		</div>
 		<input type="submit" name="" value="글 저장하기">

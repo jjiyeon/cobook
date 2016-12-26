@@ -12,7 +12,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values
 		(review_no_seq.nextval,
 		#{member_no}, #{title},
-		#{contents}, #{ebook_no}, sysdate, 3)
+		#{contents}, #{ebook_no}, sysdate, #{evaluate})
 	</insert>
 
 	<select id="bookReviewList" resultType="ReviewVO">
