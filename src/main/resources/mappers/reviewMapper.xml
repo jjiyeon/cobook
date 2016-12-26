@@ -18,7 +18,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="bookReviewList" resultType="ReviewVO">
 	<![CDATA[	
 		select REVIEW_NO, EBOOK_NO, MEMBER_NO, TITLE, CONTENTS, HIT, REG_DATE,
-		EVALUATE, f.book_no
+		EVALUATE, f.fileurl
 		FROM 
 		(
 			SELECT ROWNUM AS rn,
@@ -29,7 +29,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 		<include refid="search"></include>
 		ORDER BY review_no desc
-		) f.files
+		), files f
 	<![CDATA[
 	WHERE rn >= #{pageStart} AND rownum <= #{perPageNum}
 	and

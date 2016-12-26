@@ -10,8 +10,9 @@ public class ReviewVO {
 	    private String title;
 	    private String contents;
 	    private Integer hit;
-	    private Date reg_Date;
+	    private Date reg_date;
 	    private Float evaluate;
+	    private String fileurl;
 		public Integer getReview_no() {
 			return review_no;
 		}
@@ -48,11 +49,11 @@ public class ReviewVO {
 		public void setHit(Integer hit) {
 			this.hit = hit;
 		}
-		public Date getReg_Date() {
-			return reg_Date;
+		public Date getReg_date() {
+			return reg_date;
 		}
-		public void setReg_Date(Date reg_Date) {
-			this.reg_Date = reg_Date;
+		public void setReg_date(Date reg_date) {
+			this.reg_date = reg_date;
 		}
 		public Float getEvaluate() {
 			return evaluate;
@@ -60,11 +61,19 @@ public class ReviewVO {
 		public void setEvaluate(Float evaluate) {
 			this.evaluate = evaluate;
 		}
+		public String getFileurl() {
+			return fileurl;
+		}
+		public void setFileurl(String fileurl) {
+			this.fileurl = fileurl;
+		}
 		@Override
 		public String toString() {
 			return "ReviewVO [review_no=" + review_no + ", ebook_no=" + ebook_no + ", member_no=" + member_no
-					+ ", title=" + title + ", contents=" + contents + ", hit=" + hit + ", reg_Date=" + reg_Date
-					+ ", evaluate=" + evaluate + "]";
+					+ ", title=" + title + ", contents=" + contents + ", hit=" + hit + ", reg_date=" + reg_date
+					+ ", evaluate=" + evaluate + ", fileurl=" + fileurl + "]";
 		}
+	    
+		
 
 }

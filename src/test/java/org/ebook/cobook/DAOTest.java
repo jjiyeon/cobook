@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.apache.log4j.chainsaw.Main;
 import org.ebook.cobook.board.domain.Criteria;
 import org.ebook.cobook.board.domain.PageMaker;
 import org.ebook.cobook.board.domain.ReviewVO;
@@ -42,6 +43,7 @@ public class DAOTest {
 		List<ReviewVO> list = dao.bookReviewList(cri);
 		logger.info(list.toString());
 		logger.info(pageMaker.toString());
+		logger.info(pageMaker.makeSearch(1));
 		
 	}
 	

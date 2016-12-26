@@ -1,5 +1,7 @@
 package org.ebook.cobook.board.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.ebook.cobook.board.domain.Criteria;
@@ -11,7 +13,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -36,12 +37,11 @@ public class ReviewController {
 		logger.info("리뷰 작성기능 실행");
 		logger.info(vo.toString());
 		reviewService.writeReview(vo);
-		return "/board/review/review_list/"+vo.getMember_no();
+		return "redirect:/board/review/review_list";
 	}
 	
-	@RequestMapping(value="/review_list/{member_no}", method=RequestMethod.GET)
+	@RequestMapping(value="/review_list", method=RequestMethod.GET)
 	public void review_list(@ModelAttribute("cri")Criteria cri,
-							 @PathVariable("member_no")Integer member_no,
 							 Model model)throws Exception{
 		
 		logger.info("list페이지호출");
@@ -50,9 +50,11 @@ public class ReviewController {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(reviewService.getBookReviewCount(cri));
-		
+		List<ReviewVO> list = reviewService.getBookReviewList(cri);
 		model.addAttribute("pageMaker", pageMaker);
-		model.addAttribute("list", reviewService.borrowBookList(member_no));
+		model.addAttribute("list", list);
+		model.addAttribute("displayFile", "http://localhost:8080/files/displayFile?fileName=");
+		logger.info("리스트: "+list.toString());
 	}
 	
 	
