@@ -1,14 +1,15 @@
 package org.ebook.cobook;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
-import org.apache.log4j.chainsaw.Main;
 import org.ebook.cobook.board.domain.Criteria;
 import org.ebook.cobook.board.domain.PageMaker;
 import org.ebook.cobook.board.domain.ReviewVO;
 import org.ebook.cobook.board.persistence.ReviewDAO;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -47,5 +48,34 @@ public class DAOTest {
 		
 	}
 	
+	@Test
+	@Ignore
+	public void read()throws Exception{
+		
+		Map<String, Object> map = dao.readBookReview(103);
+		logger.debug("debug: "+map.toString());
+		logger.info("info: "+map.toString());
+	}
 	
+	@Test
+	@Ignore
+	public void update() throws Exception{
+		
+		ReviewVO vo = new ReviewVO();
+		vo.setTitle("제목");
+		vo.setContents("내용");
+		vo.setReview_no(101);
+		vo.setEbook_no(5);
+		
+		dao.updateBookReview(vo);
+	}
+	
+	@Test
+	@Ignore
+	public void delete()throws Exception{
+		
+		dao.deleteBookReview(99);
+		
+		
+	}
 }

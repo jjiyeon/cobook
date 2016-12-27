@@ -65,20 +65,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		AND
 		br.member_no = m.member_no
 		AND
-		br.review_no = #{review_no};
+		br.review_no = #{review_no}
 	</select>
 
 	<update id="updateBookReview">
 		update bookreview
 		set title = #{title}, contents = #{contents},
 		ebook_no = #{ebook_no}
-		where review_no = #{review_no};
+		where review_no = #{review_no}
 
 	</update>
 
 	<delete id="deleteBookReview">
 		delete from bookreview
-		where review_no = #{review_no};
+		where review_no = #{review_no}
 
 	</delete>
 

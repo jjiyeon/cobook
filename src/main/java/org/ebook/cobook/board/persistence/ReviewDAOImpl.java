@@ -51,9 +51,9 @@ public class ReviewDAOImpl implements ReviewDAO {
 	}
 
 	@Override
-	public void updateBookReview(Integer review_no) throws Exception {
+	public void updateBookReview(ReviewVO vo) throws Exception {
 		// TODO Auto-generated method stub
-		sqlSession.update(reviewNamespace+".updateBookReview", review_no);
+		sqlSession.update(reviewNamespace+".updateBookReview", vo);
 	}
 
 	@Override
