@@ -30,12 +30,13 @@ public class DAOTest {
 
 	
 	@Test
+	@Ignore
 	public void listTest() throws Exception{
 		
 		Criteria cri = new Criteria();
 		cri.setPage(1);
 		cri.setPerPageNum(10);
-		cri.setKeyword("TITLE 074");
+		cri.setKeyword("TITLE");
 		cri.setSearchType("t");
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);

@@ -13,6 +13,7 @@ public class ReviewVO {
 	    private Date reg_date;
 	    private Float evaluate;
 	    private String fileurl;
+	    private String category;
 		public Integer getReview_no() {
 			return review_no;
 		}
@@ -67,12 +68,20 @@ public class ReviewVO {
 		public void setFileurl(String fileurl) {
 			this.fileurl = fileurl;
 		}
+		public String getCategory() {
+			return category;
+		}
+		public void setCategory(String category) {
+			this.category = category;
+		}
 		@Override
 		public String toString() {
 			return "ReviewVO [review_no=" + review_no + ", ebook_no=" + ebook_no + ", member_no=" + member_no
 					+ ", title=" + title + ", contents=" + contents + ", hit=" + hit + ", reg_date=" + reg_date
-					+ ", evaluate=" + evaluate + ", fileurl=" + fileurl + "]";
+					+ ", evaluate=" + evaluate + ", fileurl=" + fileurl + ", category=" + category + "]";
 		}
+	    
+		
 	    
 		
 
