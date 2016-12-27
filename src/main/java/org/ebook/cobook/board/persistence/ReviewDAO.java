@@ -18,7 +18,7 @@ public interface ReviewDAO {
 
 	public Map<String, Object> readBookReview(Integer review_no)throws Exception;
 	
-	public void updateBookReview(Integer review_no)throws Exception;
+	public void updateBookReview(ReviewVO vo)throws Exception;
 	
 	public void deleteBookReview(Integer review_no)throws Exception;
 }

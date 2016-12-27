@@ -17,23 +17,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="bookReviewList" resultType="ReviewVO">
 	<![CDATA[	
-		select REVIEW_NO, EBOOK_NO, MEMBER_NO, TITLE, CONTENTS, HIT, REG_DATE,
-		EVALUATE, f.fileurl
+		SELECT br.review_no, br.ebook_no, br.member_no, br.title, br.contents, br.hit, br.reg_date,
+		br.evaluate, f.fileurl, e.category
 		FROM 
 		(
 			SELECT ROWNUM AS rn,
-			REVIEW_NO, EBOOK_NO, MEMBER_NO, TITLE, CONTENTS, HIT, REG_DATE, EVALUATE
-			FROM BOOKREVIEW
+			review_no, ebook_no, member_no, title, contents, hit, reg_date, evaluate
+			FROM bookreview
 			WHERE review_no > 0
 	]]>
 
 		<include refid="search"></include>
 		ORDER BY review_no desc
-		), files f
+		) br, files f, ebook e
 	<![CDATA[
 	WHERE rn >= #{pageStart} AND rownum <= #{perPageNum}
-	and
-	ebook_no = f.book_no
+	AND
+	br.ebook_no = f.book_no
+	AND
+	f.book_type like 'ebook'
+	AND
+	br.ebook_no = e.ebook_no
 	]]>
 
 	</select>
@@ -65,20 +69,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		AND
 		br.member_no = m.member_no
 		AND
-		br.review_no = #{review_no};
+		br.review_no = #{review_no}
 	</select>
 
 	<update id="updateBookReview">
 		update bookreview
 		set title = #{title}, contents = #{contents},
 		ebook_no = #{ebook_no}
-		where review_no = #{review_no};
+		where review_no = #{review_no}
 
 	</update>
 
 	<delete id="deleteBookReview">
 		delete from bookreview
-		where review_no = #{review_no};
+		where review_no = #{review_no}
 
 	</delete>
 
